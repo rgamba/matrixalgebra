@@ -17,8 +17,7 @@ class Matrix{
 	public function __construct($matrix=""){
 		if(!empty($matrix))
 			$this->set($matrix);
-		header("Content-type: text/plain");
-		echo ">> MATRIX CONSOLE \n";
+		
 	}
 	
     /**
@@ -161,7 +160,6 @@ class Matrix{
 			$matrix=$tmp;
 		}
 		$matrix=$this->adjust($matrix);
-		$this->plotRaw($matrix);
 		return $matrix;
 	}
 	
@@ -188,7 +186,6 @@ class Matrix{
 				$sum[$i][$j]=$a[$i][$j]+(is_array($b) ? $b[$i][$j] : $b);
 			}
 		}
-		$this->plotRaw($sum,"Sum");
 		return $sum;
 	}
     
@@ -244,7 +241,6 @@ class Matrix{
 				$subs[$i][$j]=$a[$i][$j]-(is_array($b) ? $b[$i][$j] : $b);
 			}
 		}
-		$this->plotRaw($subs,"Substraction");
 		return $subs;
 	}
 	
@@ -272,7 +268,6 @@ class Matrix{
 				$tmp=0;
 			}
 		}
-		$this->plotRaw($res,"Multiplication");
 		return $res;
 	}
 	
@@ -402,7 +397,6 @@ class Matrix{
 				}
 			}
 		}
-		$this->plotRaw($a,"Solution");
 		return $a;	
 	}
 	
@@ -456,7 +450,6 @@ class Matrix{
 				$a[$i][$sa['rows']+$j]=$b[$i][$j];
 			}
 		}
-		$this->plotRaw($a);
 		return $a;
 	}
 	
@@ -493,7 +486,6 @@ class Matrix{
 		if($det==0)
 			$this->error("inv()","The matrix determinant is cero");
 		$res=$this->dmult($adj,(1/$det),false);
-		$this->plotRaw($res,"Inverse");
 		return $res;
 		
 	}
